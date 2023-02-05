@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">My Application</string>
-    <string name="KidSafe" />
+    <string name="app_name">KidSAFE</string>
+    <string name="KidSafe"/>
 </resources>
