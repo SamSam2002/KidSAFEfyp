@@ -29,34 +29,7 @@
             android:textColor="@color/black"
             android:textSize="25dp"
             android:textStyle="bold" />
-        <EditText
-            android:id="@+id/PersonName"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="Name"
-            android:textColorHint="#909090"
-            android:layout_gravity="center"
-            android:drawableLeft="@drawable/baseline_person_24"
-            android:drawablePadding="10dp"
-            android:layout_marginTop="35dp"
-            android:background="@drawable/edit"
-            android:padding="20dp"
-            />
-        <EditText
-            android:id="@+id/phone"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="Phone number"
-            android:textColorHint="#909090"
-            android:layout_gravity="center"
-            android:drawableLeft="@drawable/baseline_phone_24"
-            android:drawablePadding="10dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/edit"
-            android:padding="20dp"
-            />
+
 
         <EditText
             android:id="@+id/email"
@@ -77,7 +50,20 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:hint="Phone number"
+            android:hint="Password"
+            android:textColorHint="#909090"
+            android:layout_gravity="center"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit"
+            android:padding="20dp"
+            />
+        <EditText
+            android:id="@+id/Repass"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Confirm Password"
             android:textColorHint="#909090"
             android:layout_gravity="center"
             android:drawablePadding="10dp"

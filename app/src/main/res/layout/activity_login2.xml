@@ -33,7 +33,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/email1"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -47,7 +47,7 @@
             android:textColorHint="#909090" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/password1"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

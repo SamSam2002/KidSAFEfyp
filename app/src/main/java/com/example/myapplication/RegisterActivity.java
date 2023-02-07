@@ -16,7 +16,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText editTextEmail, editTextPassword, editTextName, editTextPhone;
+    EditText editTextEmail, editTextPassword, editTextRepass;
     Button register;
     Button back_to_login;
     password_db myDatabase;
@@ -28,8 +28,9 @@ public class RegisterActivity extends AppCompatActivity {
         myDatabase = new password_db(this);
         editTextEmail = findViewById(R.id.email);
         editTextPassword = findViewById(R.id.password);
-        editTextName = findViewById(R.id.PersonName);
-        editTextPhone = findViewById(R.id.phone);
+        editTextRepass = findViewById(R.id.Repass);
+
+
         Register_User();
         back_to_login = findViewById(R.id.back_to_login);
         back_to_login.setOnClickListener(new View.OnClickListener() {
@@ -45,49 +46,63 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void Register_User() {
+        register = findViewById(R.id.register);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Name = editTextName.getText().toString();
-                String Phone = editTextName.getText().toString();
                 String email = editTextEmail.getText().toString();
                 String password = editTextPassword.getText().toString();
-                if (!isEmailValid(email)) {
-                    Toast.makeText(RegisterActivity.this, "Not a valid email", Toast.LENGTH_SHORT).show();
-                } else if (!isPasswordValid(password)) {
-                    Toast.makeText(RegisterActivity.this, "Too short password", Toast.LENGTH_SHORT).show();
-                } else if (email.isEmpty()) {
-                    Toast.makeText(RegisterActivity.this, "Fill all the empty fields", Toast.LENGTH_SHORT).show();
+                String repass= editTextRepass.getText().toString();
+                if (email.equals(" ")||password.equals("")||repass.equals(""))
+                    Toast.makeText(RegisterActivity.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
+                else {
+                    if (password.equals(repass)) {
+                        Boolean checkuser = myDatabase.checkusername(email);
+                        if (checkuser == false) {
+                            Boolean insert = myDatabase.insertData(email, password);
+                            if (insert == true) {
+                                new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.SUCCESS_TYPE)
+                                        .setTitleText("Message")
+                                        .setContentText("You are Registered")
+                                        .setConfirmText("OK")
+                                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                            @Override
+                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                                Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
+                                                startActivity(i);
+                                            }
+                                        })
+                                        .show();
+                            } else {
+                                Toast.makeText(RegisterActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
 
-                } else if (password.isEmpty()) {
-                    Toast.makeText(RegisterActivity.this, "Not a valid email", Toast.LENGTH_SHORT).show();
-                } else {
-                    boolean isInserted = myDatabase.insertData(email, password);
-                    new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.SUCCESS_TYPE)
-                            .setTitleText("Message")
-                            .setContentText("You are Registered")
-                            .setConfirmText("OK")
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                @Override
-                                public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                    Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
-                                    startActivity(i);
-                                }
-                            })
-                            .show();
+
+                            }
+                        } else {
+                            Toast.makeText(RegisterActivity.this, "User already exists", Toast.LENGTH_SHORT).show();
+
+                        }
 
 
+                    } else {
+                        Toast.makeText(RegisterActivity.this, "Passwords not matching", Toast.LENGTH_SHORT).show();
+
+                    }
                 }
-            }
 
 
-            private boolean isEmailValid(String email) {
-                return email.contains("@");
-            }
 
-            private boolean isPasswordValid(String password) {
-                return password.length() > 5;
+
+
+
+
             }
         });
+
+
+
+
+
+
     }
 }
