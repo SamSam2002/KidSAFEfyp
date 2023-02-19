@@ -17,6 +17,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView txtView;
     EditText editTextEmail, editTextPassword;
     Button login;
+    Button child;
     password_db myDb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,15 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
+        child= findViewById(R.id.child);
+        child.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(LoginActivity.this, ChildLogin.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void attempt_login() {
@@ -59,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                         .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                             @Override
                             public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                Intent i = new Intent(LoginActivity.this, ParentHomeActivity2.class);
+                                Intent i = new Intent(LoginActivity.this, ParentHome.class);
                                 startActivity(i);
                             }
                         })

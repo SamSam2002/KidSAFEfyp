@@ -13,5 +13,7 @@
     <color name="colorPurple">#7032DC</color>
     <color name="colorBlue">#3F51B5</color>
     <color name="shadow_color">#FFC107</color>
+    <color name="lightOrange">#FFD580</color>
+
 
 </resources>

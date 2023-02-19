@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ScreenTimeactivity"
+    android:background="@color/colorBlue">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="233dp"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/box"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp">
+
+        <TextView
+
+            android:id="@+id/screen_time_text_view"
+            android:layout_width="169dp"
+            android:layout_height="63dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="15dp"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="100dp"
+            tools:layout_editor_absoluteY="69dp" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="90dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="65dp"
+            android:layout_marginEnd="99dp"
+            android:layout_marginBottom="38dp"
+            android:background="@drawable/screen" />
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+</LinearLayout>
