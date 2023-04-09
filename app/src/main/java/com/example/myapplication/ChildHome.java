@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.content.Intent;
 import android.graphics.Color;
@@ -18,11 +19,16 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.samikshya.lock.activities.main.MainActivity;
+import com.samikshya.lock.activities.main.SplashActivity;
+
 
 public class ChildHome extends AppCompatActivity {
     GridLayout mainGrid;
     TextView scr;
     TextView blck;
+
+    TextView loc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +43,19 @@ public class ChildHome extends AppCompatActivity {
                 finish();
             }
         });
+      blck.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+              Intent intent = new Intent(ChildHome.this, SplashActivity.class);
+              startActivity(intent);
+              finish();
+
+              // Start the PatternLockAct activity
+              /*Intent patternLockIntent = new Intent(ChildHome.this, PinActivity.class);
+              startActivity(patternLockIntent);
+              finish();*/
+          }
+      });
 
 
 

@@ -10,29 +10,35 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.API.RetrofitClient;
+
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ChildLogin extends AppCompatActivity {
     TextView txtView;
-    EditText name, pin;
+    EditText editTextemail, editTextpassword;
     Button login;
-    Child_PINdb myDb;
+
     Button backparent_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_child_login);
-        myDb= new Child_PINdb(this);
-        name= findViewById(R.id.name_editext);
-        pin= findViewById(R.id.pin_editext);
+
+        editTextemail= findViewById(R.id.email_editext);
+        editTextpassword = findViewById(R.id.pass_editext);
         login=findViewById(R.id.login_button);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                attempt_login();
+                Child_login();
             }
         });
+
         backparent_button=findViewById(R.id.backparent_button);
         backparent_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,30 +51,43 @@ public class ChildLogin extends AppCompatActivity {
 
     }
 
-    private void attempt_login() {
-        String Name =name.getText().toString();
-        String PIN= pin.getText().toString();
-        if (Name.equals("")||PIN.equals(""))
-            Toast.makeText(ChildLogin.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
-        else{
-            Boolean checknamepin = myDb.checknamepin(Name, PIN);
-            if(checknamepin==true){
-                new SweetAlertDialog(ChildLogin.this, SweetAlertDialog.SUCCESS_TYPE)
-                        .setTitleText("Message")
-                        .setContentText("WELCOME TO CHILD'S DEVICE")
-                        .setConfirmText("OK")
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                Intent i = new Intent(ChildLogin.this, ChildHome.class);
-                                startActivity(i);
-                            }
-                        })
-                        .show();
+    private void Child_login() {
+        String email =editTextemail.getText().toString().trim();
+        String password = editTextpassword.getText().toString().trim();
+        String role = "child";
+        Call<LoginResponse> call = RetrofitClient
+                .getInstance()
+                .getAPI()
+                .login(email, password,role);
+        call.enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                LoginResponse loginResult = response.body();
 
-            }else{
-                Toast.makeText(ChildLogin.this, "Invalid credentials", Toast.LENGTH_SHORT).show();
+                if(response.body() != null) {
+                    if (role == "child") {
+                        if (!loginResult.isError()) {
+                            Intent intent = new Intent(ChildLogin.this, ChildHome.class);
+                            startActivity(intent);
+                            finish();
+
+                        } else {
+                            Toast.makeText(ChildLogin.this, loginResult.getMessage(), Toast.LENGTH_LONG).show();
+
+                        }
+                    }
+                }
             }
-        }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                Toast.makeText(ChildLogin.this,t.getMessage(),Toast.LENGTH_LONG).show();
+
+            }
+        });
+
     }
+
+
+
 }

@@ -32,15 +32,15 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/name_editext"
+            android:id="@+id/email_editext"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="35dp"
             android:background="@drawable/edit"
-            android:drawableLeft="@drawable/baseline_person_24"
+            android:drawableLeft="@drawable/baseline_email_24"
             android:drawablePadding="10dp"
-            android:hint="Your Child's Name"
+            android:hint="Your Child's Email"
             android:inputType="textEmailAddress"
             android:padding="20dp"
             android:textColorHint="#909090"
@@ -49,7 +49,7 @@
 
 
     <EditText
-        android:id="@+id/pin_editext"
+        android:id="@+id/pass_editext"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -57,11 +57,13 @@
         android:layout_marginBottom="25dp"
         android:background="@drawable/edit"
         android:drawablePadding="10dp"
-        android:hint="Insert the PIN"
+        android:hint="Insert the Password"
+        android:drawableLeft="@drawable/baseline_key_24"
         android:inputType="textPassword"
         android:padding="20dp"
         android:textColorHint="#909090"
-        android:maxLength="4" />
+         />
+
 
     <Button
         android:id="@+id/login_button"

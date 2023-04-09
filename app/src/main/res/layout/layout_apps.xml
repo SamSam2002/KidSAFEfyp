@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:padding="5dp"
+    android:gravity="center"
+    android:layout_height="100dp">
+
+    <ImageView
+        android:id="@+id/app_icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:clickable="false"
+        android:focusable="false"
+        android:padding="5dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/app_name"
+                android:layout_width="231dp"
+                android:layout_height="46dp"
+                android:padding="5dp"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/checkbox"
+                android:layout_width="72dp"
+                android:layout_height="match_parent"
+                android:clickable="false"
+                android:focusable="false"
+                android:src="@drawable/baseline_lock_open_24" />
+
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_weight="1"
+            android:background="@android:color/black" />
+    </LinearLayout>
+
+
+
+</LinearLayout>
